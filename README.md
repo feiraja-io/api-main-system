@@ -29,3 +29,7 @@ docker-compose up -d
 ```
 php artisan migrate
 ```
+### run project:
+```
+php artisan serve
+```

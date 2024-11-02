@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Store extends Model
 {
@@ -14,6 +15,10 @@ class Store extends Model
         'cnpj',
         'city_delivery',
     ];
+
+    public function store(): HasOne {
+        return $this->hasOne(Product::class);
+    }
 
     public function address(): BelongsTo {
         return $this->belongsTo(Address::class);

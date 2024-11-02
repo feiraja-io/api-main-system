@@ -15,20 +15,17 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+        $store = Product::create($request->all());
+        return response()->json([$store],200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        try { return response()->json([Product::findOrFail($id)],200); }
+        catch (\Throwable $th) { return response()->json(['error'],404); }
     }
 
     /**

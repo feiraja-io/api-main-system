@@ -16,7 +16,6 @@ class Address extends Model
         'state'
     ];
 
-
     public function store(): HasOne {
         return $this->hasOne(Store::class);
     }

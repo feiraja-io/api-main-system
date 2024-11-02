@@ -24,11 +24,8 @@ class StoreController extends Controller
 
     public function show($id)
     {
-        try {
-            return response()->json([Store::findOrFail($id)],200);
-        } catch (\Throwable $th) {
-            return response()->json(['error'],404);
-        }
+        try { return response()->json([Store::findOrFail($id)],200); }
+        catch (\Throwable $th) { return response()->json(['error'],404); }
     }
 
     /**
