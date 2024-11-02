@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Store extends Model
 {
@@ -12,10 +12,10 @@ class Store extends Model
         'name',
         'owner',
         'cnpj',
-        'city-delivery',
+        'city_delivery',
     ];
 
-    public function address(): HasOne {
-        return $this->hasOne(Address::class);
+    public function address(): BelongsTo {
+        return $this->belongsTo(Address::class);
     }
 }

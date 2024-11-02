@@ -18,10 +18,7 @@ class StoreController extends Controller
 
     public function store(Request $request)
     {
-        $address = Address::create($request->get('address'));
-        $storeFields = $request->all();
-        $storeFields['address_id'] = $address->id;
-        $store = Store::create($storeFields);
+        $store = Store::create($request->all())->address()->create($request->get('address'));
         return response()->json([$store],200);
     }
 
