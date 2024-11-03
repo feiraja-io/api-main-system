@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('address_id')->nullable();
             $table->string('name');
+            $table->string('email');
+            $table->string('password');
             $table->string('logo');
             $table->string('team');
             $table->json('certifys');

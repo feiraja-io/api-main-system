@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Store;
 use App\Models\Address;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
@@ -15,7 +16,7 @@ class StoreController extends Controller
 
     public function store(Request $request)
     {
-        $store = Store::encode_create($request->all())->address()->create($request->get('address'));
+        $store = Store::register($request->all())->address()->create($request->get('address'));
         return response()->json([$store],200);
     }
 
@@ -27,7 +28,11 @@ class StoreController extends Controller
 
     public function login(Request $request)
     {
-        //
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return response()->json(["succsess"],200);
+        }
+        return response()->json(['error'],500);
     }
 
     /**

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProductController;
 
+
+Route::post('/login',[StoreController::class,'login']);
+
 Route::prefix('/store')->group(function () {
     Route::post('/',[StoreController::class,'store']);
     Route::get('/',[ProductController::class,'index']);

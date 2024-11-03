@@ -17,6 +17,8 @@ class CreateStoreTest extends TestCase
             "name" => "Teste",
             "owner" => "João da silva",
             "cnpj" => "22843722000140",
+            'email' => "teste@teste.com",
+            'password' => "12345678",
             "cities_delivery" => ["campo formoso"],
             'logo' => "www.teste.com",
             'team' => "www.teste.com",

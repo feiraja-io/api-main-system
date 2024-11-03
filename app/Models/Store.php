@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Hash;
 
-class Store extends Model
+class Store extends Authenticatable
 {
     protected $casts = [
         'certifys' => 'array',
@@ -14,6 +16,8 @@ class Store extends Model
     ];
     protected $fillable = [
         'address_id',
+        'email',
+        'password',
         'name',
         'owner',
         'cnpj',
@@ -23,17 +27,18 @@ class Store extends Model
         'cities_delivery',
     ];
 
-    public function store(): HasOne {
-        return $this->hasOne(Product::class);
+    public function product(): HasMany {
+        return $this->hasMany(Product::class);
     }
 
     public function address(): BelongsTo {
         return $this->belongsTo(Address::class);
     }
 
-    public static function encode_create($data) {
+    public static function register($data) {
         $data['certifys'] = json_encode($data['certifys']);
         $data['cities_delivery'] = json_encode($data['cities_delivery']);
+        $data['password'] = Hash::make($data['password']);
         return static::create($data);
     }
 }
