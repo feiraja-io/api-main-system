@@ -17,7 +17,10 @@ class CreateStoreTest extends TestCase
             "name" => "Teste",
             "owner" => "João da silva",
             "cnpj" => "22843722000140",
-            "city_delivery" => "salvador",
+            "cities_delivery" => ["campo formoso"],
+            'logo' => "www.teste.com",
+            'team' => "www.teste.com",
+            'certifys' => ["www.teste.com"],
             "address" => [
                 "address" => "avaenida do xpto",
                 "street" => "xpto",

@@ -11,7 +11,6 @@ class Address extends Model
         'address',
         'street',
         'cep',
-        'cep',
         'city',
         'state'
     ];

@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('address_id')->nullable();
             $table->string('name');
+            $table->string('logo');
+            $table->string('team');
+            $table->json('certifys');
+            $table->json('cities_delivery');
             $table->string('owner');
             $table->string('cnpj');
-            $table->string('city_delivery');
             $table->timestamps();
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
         });

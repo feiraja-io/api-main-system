@@ -11,7 +11,8 @@ class CreateProductTest extends TestCase
 {
     public function test_store_product_rout(): void
     {
-        $store = Store::create(["name" => "Teste", "owner" => "João da silva", "cnpj" => "22843722000140", "city_delivery" => "salvador"]);
+        $store = Store::encode_create(["name" => "Teste", "owner" => "João da silva", "cnpj" => "22843722000140",
+        "cities_delivery" => ["salvador"], 'logo' => "www.teste.com", 'team' => "www.teste.com", 'certifys' => ["www.teste.com"]]);
         $response = $this->post('/product', [
             'store_id' => $store->id,
             'name' =>  "Tomate",

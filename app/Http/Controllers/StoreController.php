@@ -8,17 +8,14 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return response()->json([Store::all()],200);
     }
 
     public function store(Request $request)
     {
-        $store = Store::create($request->all())->address()->create($request->get('address'));
+        $store = Store::encode_create($request->all())->address()->create($request->get('address'));
         return response()->json([$store],200);
     }
 
@@ -28,10 +25,7 @@ class StoreController extends Controller
         catch (\Throwable $th) { return response()->json(['error'],404); }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Store $store)
+    public function login(Request $request)
     {
         //
     }
