@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('responsible');
-            $table->string('image_path');
             $table->string('track_stock_by');
             $table->string('charge_for');
             $table->string('item_unity');

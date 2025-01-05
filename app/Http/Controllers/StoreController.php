@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Store;
 use App\Models\Address;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
@@ -24,15 +23,6 @@ class StoreController extends Controller
     {
         try { return response()->json([Store::findOrFail($id)],200); }
         catch (\Throwable $th) { return response()->json(['error'],404); }
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return response()->json(["succsess"],200);
-        }
-        return response()->json(['error'],500);
     }
 
     /**
