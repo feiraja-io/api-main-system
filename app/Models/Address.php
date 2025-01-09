@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Address extends Model
 {
     protected $fillable = [
+        'user_id',
         'address',
         'street',
         'cep',
@@ -15,7 +16,7 @@ class Address extends Model
         'state'
     ];
 
-    public function store(): HasOne {
-        return $this->hasOne(Store::class);
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
     }
 }

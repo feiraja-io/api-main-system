@@ -13,11 +13,11 @@ class CreateStoreTest extends TestCase
      */
     public function test_store_store_rout(): void
     {
-        $response = $this->post('/store', [
+        $response = $this->post('/register/step-1', [
             "name" => "Teste",
             "owner" => "João da silva",
             "cnpj" => "22843722000140",
-            'email' => "teste@teste.com",
+            'email' => "testasaaaqqqe@teste.com",
             'password' => "12345678",
             "cities_delivery" => ["campo formoso"],
             'logo' => "www.teste.com",

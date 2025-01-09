@@ -7,7 +7,9 @@ use App\Http\Controllers\UserController;
 
 
 Route::post('/login',[UserController::class,'login']);
-Route::post('/register',[UserController::class,'register']);
+Route::post('/register/step-1',[UserController::class,'register']);
+Route::post('/register/step-2',[UserController::class,'registerImages']);
+Route::post('/register/step-3',[UserController::class,'registerBank']);
 
 Route::prefix('/store')->group(function () {
     Route::post('/',[StoreController::class,'store']);

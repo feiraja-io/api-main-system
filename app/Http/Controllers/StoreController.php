@@ -13,12 +13,6 @@ class StoreController extends Controller
         return response()->json([Store::all()],200);
     }
 
-    public function store(Request $request)
-    {
-        $store = Store::register($request->all())->address()->create($request->get('address'));
-        return response()->json([$store],200);
-    }
-
     public function show($id)
     {
         try { return response()->json([Store::findOrFail($id)],200); }
