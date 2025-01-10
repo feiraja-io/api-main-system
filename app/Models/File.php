@@ -15,22 +15,16 @@ class File extends Model
         'path'
     ];
 
-    public static function registerStoreImages($id, $paths) {
-        $file = ['owner_id' => $id, 'owner_class' => Store::class];
-        File::create(array_merge($file,[
-            'type' => "logo",
-            $paths['logo']
-        ]));
-        File::create(array_merge($file,[
-            'type' => "team",
-            'path' => $paths['team']
-        ]));
-        foreach ($paths['certifys'] as $certify) {
-            File::create(array_merge($file,[
-                'type' => "certify",
-                'path' => $certify
-            ]));
+    public static function registerStoreImages($paths) {
+        $files = [];
+        $file = ['owner_id' => $paths['id'], 'owner_class' => Store::class];
+        $files[] = File::create(array_merge($file,['type' => "logo", 'path' => $paths['logo']]))->id;
+        foreach ($paths['team'] as $team) {
+            $files[] = File::create(array_merge($file,['type' => "team", 'path' => $team]))->id;
         }
-        return static;
+        foreach ($paths['certifies'] as $certify) {
+            $files[] = File::create(array_merge($file,['type' => "certify", 'path' => $certify]))->id;
+        }
+        return $files;
     }
 }

@@ -14,7 +14,10 @@ class Store extends Authenticatable
         'cities_delivery',
         'name',
         'owner',
-        'cnpj'
+        'cnpj',
+        'branch',
+        'checking account',
+        'digit'
     ];
 
     protected $casts = [

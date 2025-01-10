@@ -32,11 +32,17 @@ class UserController extends Controller
     {
         try {
             $data = $request->all();
-            $store_image = File::registerStoreImages($data['id'],$data);
+            $store_image = File::registerStoreImages($data);
             return response()->json([$store_image],200);
-        } catch (\Throwable $th) { return response()->json(['error'],500); }
+        } catch (\Throwable $th) { dd($th->getMessage()); return response()->json(['error'],500); }
     }
 
     public function registerBank(Request $request)
-    {}
+    {
+        try {
+            $data = $request->all();
+            $store = User::findOrFail($data['id'])->update($data);
+            return response()->json([$store],200);
+        } catch (\Throwable $th) { dd($th->getMessage()); return response()->json(['error'],500); }
+    }
 }
