@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -13,11 +14,18 @@ class LoginTest extends TestCase
      */
     public function test_example(): void
     {
-        // $response = $this->post('/login', [
-        //     'email' => "teste@teste.com",
-        //     'password' => "12345678",
-        // ]);
+        $u = [
+            "name" => "Teste",
+            'email' => "test@teste.com",
+            'password' => "12345678",
+        ];
+        $user = User::create($u);
+        $response = $this->post('/login', [
+            'email' => $u['email'],
+            'password' => $u['password']
+        ]);
 
-        // $response->assertStatus(200);
+        $user->delete();
+        $response->assertStatus(200);
     }
 }
