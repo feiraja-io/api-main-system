@@ -19,13 +19,24 @@ class UserController extends Controller
         return response()->json(['error'],500);
     }
 
-    public function register(Request $request)
+    public function registerStore(Request $request)
     {
         try {
             $data = $request->all();
-            $store = User::registerStore($data,$data['address'],$data);
+            $store = User::registerStore($data);
             return response()->json([$store],200);
-        } catch (\Throwable $th) { return response()->json(['error'],500); }
+        } catch (\Throwable $th) { dump($th->getMessage()); return response()->json(['error'],500); }
+    }
+
+    public function registerAddresses(Request $request)
+    {
+        try {
+            $data = $request->all();
+            $user = User::findOrFail($data['id'])
+            ->address()->create($data);
+            $user->update(['cities_delivery' => $data['cities_delivery']]);
+            return response()->json([$user],200);
+        } catch (\Throwable $th) { dump($th->getMessage()); return response()->json(['error'],500); }
     }
 
     public function registerImages(Request $request)

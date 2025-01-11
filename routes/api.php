@@ -9,9 +9,10 @@ use App\Http\Controllers\UserController;
 Route::post('/login',[UserController::class,'login']);
 
 Route::prefix('/register')->group(function () {
-    Route::post('/step-1',[UserController::class,'register']);
-    Route::post('/step-2',[UserController::class,'registerImages']);
-    Route::post('/step-3',[UserController::class,'registerBank']);
+    Route::post('/step-1',[UserController::class,'registerStore']);
+    Route::post('/step-2',[UserController::class,'registerAddresses']);
+    Route::post('/step-3',[UserController::class,'registerImages']);
+    Route::post('/step-4',[UserController::class,'registerBank']);
 
 });
 

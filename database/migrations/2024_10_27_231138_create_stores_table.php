@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->json('cities_delivery');
+            $table->json('cities_delivery')->nullable();
             $table->string('name');
             $table->string('owner');
             $table->string('cnpj');
