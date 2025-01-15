@@ -15,25 +15,16 @@ return new class extends Migration
             $table->id();
             $table->integer('store_id')->unsigned();
             $table->string('name');
-            $table->string('description');
-            $table->string('responsible');
-            $table->string('track_stock_by');
-            $table->string('charge_for');
+            $table->integer('price_in_cents');
             $table->string('item_unity');
-            $table->integer('quantity');
-            $table->boolean('notify_when_is_out');
-            $table->integer('notify_when_storage_have');
-            $table->boolean('product_in_store');
-            $table->string('additional_value');
-            $table->string('selling_value_cents');
-            $table->boolean('highlight');
-            $table->integer('limit');
-            //Create category table and add n to n relation
-            $table->integer('category');
-            //separate in diferent model and table: Package
-            $table->string('package_name');
-            $table->integer('package_price_cents');
-            $table->integer('package_quantity');
+            $table->timestamp('harvest_date');
+            $table->timestamp('expiration_date');
+            $table->json('images');
+            $table->string('notes');
+            $table->string('stock_by');
+            $table->integer('stock_quantity');
+            $table->boolean('in_marketplace');
+            $table->string('description');
             $table->timestamps();
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
         });

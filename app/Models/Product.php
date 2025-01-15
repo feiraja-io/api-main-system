@@ -10,24 +10,20 @@ class Product extends Model
     protected $fillable = [
         'store_id',
         'name',
-        'description',
-        'responsible',
-        'image_path',
-        'track_stock_by',
-        'charge_for',
+        'price_in_cents',
         'item_unity',
-        'quantity',
-        'notify_when_is_out',
-        'notify_when_storage_have',
-        'product_in_store',
-        'additional_value',
-        'selling_value_cents',
-        'highlight',
-        'limit',
-        'category',
-        'package_name',
-        'package_price_cents',
-        'package_quantity'
+        'harvest_date',
+        'expiration_date',
+        'images',
+        'notes',
+        'stock_by',
+        'stock_quantity',
+        'in_marketplace',
+        'description'
+    ];
+
+    protected $casts = [
+        'images' => 'array'
     ];
 
     public function address(): BelongsTo {
