@@ -20,7 +20,9 @@ class UserService
         $new_user->store()->create($data);
         $new_user->address()->create($data['address']);
         CreateFilesAction::create($data['logo'], "logo", $new_user->id, Store::class);
-        CreateFilesAction::create($data['team'], "team", $new_user->id, Store::class);
+        CreateFilesAction::create($data['team_pictures'], "team_pictures", $new_user->id, Store::class);
+        CreateFilesAction::create($data['production_pictures'], "production_pictures", $new_user->id, Store::class);
+        CreateFilesAction::create($data['farm_pictures'], "farm_pictures", $new_user->id, Store::class);
         return $new_user;
     }
 
