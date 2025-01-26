@@ -25,7 +25,6 @@ class CreateStoreTest extends TestCase
             'password' => "12345678",
             'logo' => "www.teste.com",
             'team' => ["www.teste.com"],
-            'certifies' => ["www.teste.com"],
             "cities_delivery" => ["campo formoso"],
             'branch' => '10000',
             'checking account' =>'1000000',

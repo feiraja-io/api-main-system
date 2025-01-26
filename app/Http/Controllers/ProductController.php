@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Service\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,13 +16,16 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $store = Product::create($request->all());
-        return response()->json([$store],200);
+        try {
+            $product = ProductService::create($request->all());
+            return response()->json([$product],200);
+        }
+        catch (\Throwable $th) { dd($th->getMessage());return response()->json(['error'],500); }
     }
 
     public function show($id)
     {
-        try { return response()->json([Product::findOrFail($id)],200); }
+        try { return response()->json([ProductService::get($id)],200); }
         catch (\Throwable $th) { return response()->json(['error'],404); }
     }
 

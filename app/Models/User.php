@@ -56,12 +56,4 @@ class User extends Authenticatable
     public function address(): HasOne {
         return $this->hasOne(Address::class);
     }
-
-    public static function registerStore($data) {
-        $new_user = static::create($data);
-        $new_user->store()->create($data);
-        $new_user->address()->create($data['address']);
-        File::registerStoreImages($new_user->id, $data);
-        return $new_user;
-    }
 }

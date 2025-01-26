@@ -20,6 +20,7 @@ class CreateProductTest extends TestCase
             'name' =>  "Tomate",
             'price_in_cents' => 1000,
             'item_unity' => "item solto",
+            'certifies' => ["www.teste.com"],
             'harvest_date' => Carbon::now()->toDateTimeString(),
             'expiration_date' => Carbon::now()->toDateTimeString(),
             'images' => [ "www.image.com" ],
