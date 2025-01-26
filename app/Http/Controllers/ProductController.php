@@ -20,7 +20,7 @@ class ProductController extends Controller
             $product = ProductService::create($request->all());
             return response()->json([$product],200);
         }
-        catch (\Throwable $th) { dd($th->getMessage());return response()->json(['error'],500); }
+        catch (\Throwable $th) { return response()->json(['error'],500); }
     }
 
     public function show($id)
