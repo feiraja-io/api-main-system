@@ -15,8 +15,10 @@ class Store extends Authenticatable
         'name',
         'owner',
         'cnpj',
+        'cnpj_owner',
         'branch',
-        'checking account',
+        'checking_account',
+        'card_date',
         'digit'
     ];
 

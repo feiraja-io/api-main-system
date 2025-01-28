@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('owner');
             $table->string('cnpj');
+            $table->string('cnpj_owner');
             $table->string('branch',5)->default('0');
-            $table->string('checking account',10)->default('0');
+            $table->string('checking_account',10)->default('0');
+            $table->string('card_date',5);
             $table->string('digit')->default('0');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
