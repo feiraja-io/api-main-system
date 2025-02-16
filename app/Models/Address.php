@@ -11,6 +11,8 @@ class Address extends Model
         'user_id',
         'address',
         'street',
+        "neighborhood",
+        "complement",
         'cep',
         'city',
         'state'

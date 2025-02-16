@@ -16,13 +16,20 @@ class UserService
     }
 
     public static function registerStore($data) {
-        $new_user = User::create($data);
-        $new_user->store()->create($data);
-        $new_user->address()->create($data['address']);
-        CreateFilesAction::create($data['logo'], "logo", $new_user->id, Store::class);
-        CreateFilesAction::create($data['team_pictures'], "team_pictures", $new_user->id, Store::class);
-        CreateFilesAction::create($data['production_pictures'], "production_pictures", $new_user->id, Store::class);
-        CreateFilesAction::create($data['farm_pictures'], "farm_pictures", $new_user->id, Store::class);
+        $new_user = User::create($data['basicInfo']);
+        CreateFilesAction::create($data['media']['logo'], "logo", $new_user->id, Store::class);
+        CreateFilesAction::create($data['media']['team'], "team_pictures", $new_user->id, Store::class);
+        CreateFilesAction::create($data['media']['productionPictures'], "production_pictures", $new_user->id, Store::class);
+        $new_user->address()->create($data['locationInfo']['address']);
+        $new_user = $new_user->store()->create($data['basicInfo']);
+        $new_user->bank()->create($data['bankInfo']);
+
+        foreach ($data['locationInfo']['citiesDelivery'] as $city) {
+            $new_user->cities_delivery()->create(['name' => $city]);
+        }
+
+        $new_user->business_types()->attach($data['basicInfo']['businessType']);
+
         return $new_user;
     }
 

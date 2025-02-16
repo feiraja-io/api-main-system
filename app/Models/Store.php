@@ -11,15 +11,9 @@ class Store extends Authenticatable
 {
     protected $fillable = [
         'user_id',
-        'cities_delivery',
         'name',
         'owner',
-        'cnpj',
-        'cnpj_owner',
-        'branch',
-        'checking_account',
-        'card_date',
-        'digit'
+        'cnpj'
     ];
 
     protected $casts = [
@@ -36,5 +30,17 @@ class Store extends Authenticatable
 
     public function files(): BelongsToMany {
         return $this->belongsToMany(File::class);
+    }
+
+    public function business_types(): BelongsToMany {
+        return $this->belongsToMany(BusinessType::class);
+    }
+
+    public function bank(): HasMany {
+        return $this->hasMany(Bank::class);
+    }
+
+    public function cities_delivery(): HasMany {
+        return $this->hasMany(CitiesDelivery::class);
     }
 }

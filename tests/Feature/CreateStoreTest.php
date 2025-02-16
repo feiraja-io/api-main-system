@@ -2,43 +2,49 @@
 
 namespace Tests\Feature;
 
+use App\Models\BusinessType;
 use App\Models\User;
 use App\Models\File;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CreateStoreTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
     /**
      * A basic feature test example.
      */
     public function test_store_store_rout(): void
     {
 
+        BusinessType::create(['id' => 1, 'name' => 'Associação' ]);
         $request = $this->post('/register', [
-            "name" => "Teste",
-            "owner" => "João da silva",
-            "cnpj" => "22843722000140",
-            "cnpj_owner" => "22843722000140",
-            'email' => "tesst@teste.com",
-            'password' => "12345678",
-            'logo' => "www.teste.com",
-            'team_pictures' => ["www.teste.com"],
-            'production_pictures' => ["www.teste.com"],
-            'farm_pictures' => ["www.teste.com"],
-            "cities_delivery" => ["campo formoso"],
-            'branch' => '10000',
-            'checking_account' =>'1000000',
-            'digit' => '1122231',
-            'card_date' => '12/30',
-            'address'=> [
-                "address" => "avenida do xpto",
-                "street" => "xpto",
-                "cep" => "00000000",
-                "city" => "salvador",
-                "state" => "BA"
+            'basicInfo' => [
+                "name" => "Teste",
+                "owner" => "João da silva",
+                "cnpj" => "22843722000140",
+                'email' => "tesst@teste.com",
+                'password' => "12345678",
+                'businessType' => [1],
+            ],
+            "bankInfo" => ['pix' => '112@w23123.test'],
+              "media" => [
+                'logo' => "www.teste.com",
+                'team' => ["www.teste.com"],
+                'productionPictures' => ["www.teste.com"]
+              ],
+              'locationInfo' => [
+                'address'=> [
+                    "neighborhood" => "avenida do xpto",
+                    "complement" => "avenida do xpto",
+                    "street" => "xpto",
+                    "cep" => "00000000",
+                    "city" => "salvador",
+                    "state" => "BA"
+                ],
+                "citiesDelivery" => ["campo formoso"]
             ]
         ]);
         $request->assertStatus(200);
