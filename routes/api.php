@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BusinessTypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProductController;
@@ -15,6 +16,8 @@ Route::prefix('/store')->group(function () {
     Route::get('/',[StoreController::class,'index']);
     Route::get('/{id}',[StoreController::class,'show']);
 });
+
+Route::get('/business_types',[BusinessTypeController::class,'index']);
 
 Route::prefix('/product')->group(function () {
     Route::post('/',[ProductController::class,'store']);
